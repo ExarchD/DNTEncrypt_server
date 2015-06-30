@@ -84,14 +84,8 @@ main(int argc, char *argv[])
                         service, NI_MAXSERV, NI_NUMERICSERV);
        if (s == 0)
 {
-//            printf("Received %ld bytes from %s:%s\n",
-//                    (long) nread, host, service);
- //           std::cout << std::endl; 
-//            std::cout << buf << std::endl; 
-//	    myfile << buf << "\n";
-            vector<string> readers;
-            readers.push_back("re1");
-            readers.push_back("re2");
+            cout  << buf << endl;
+            string readers = "re1 re2";
             database_insert("HI", "HI" , readers);
 	    count++;
 	    memset(buf, 0, sizeof buf);

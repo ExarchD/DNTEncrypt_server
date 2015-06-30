@@ -5,6 +5,6 @@
 
 using namespace std;
 
-int database_insert(string IDHASH, string MESSAGE, vector<string> READERS);
+int database_insert(string IDHASH, string MESSAGE, string READERS);
 
 #endif
