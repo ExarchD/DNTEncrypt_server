@@ -1,0 +1,2 @@
+g++ sql.cpp -c
+g++ server.cxx -o server sql.o -I. -l sqlite3
