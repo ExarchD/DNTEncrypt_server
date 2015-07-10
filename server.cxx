@@ -10,8 +10,8 @@
 #include <objects.h>
 
 #define BUF_SIZE 5000
-
-int
+using namespace std;
+    int
 main(int argc, char *argv[])
 {
     struct addrinfo hints;
@@ -22,7 +22,7 @@ main(int argc, char *argv[])
     ssize_t nread;
     char buf[BUF_SIZE];
     std::ofstream myfile;
-           myfile.open ("example.txt");
+    myfile.open ("example.txt");
 
     if (argc != 2) {
         fprintf(stderr, "Usage: %s port\n", argv[0]);
@@ -80,17 +80,34 @@ main(int argc, char *argv[])
         char host[NI_MAXHOST], service[NI_MAXSERV];
 
         s = getnameinfo((struct sockaddr *) &peer_addr,
-                        peer_addr_len, host, NI_MAXHOST,
-                        service, NI_MAXSERV, NI_NUMERICSERV);
-       if (s == 0)
-{
-            cout  << buf << endl;
-            string readers = "re1 re2";
-            database_insert("HI", "HI" , readers);
-	    count++;
-	    memset(buf, 0, sizeof buf);
+                peer_addr_len, host, NI_MAXHOST,
+                service, NI_MAXSERV, NI_NUMERICSERV);
+        if (s == 0)
+        {
+            string msg = string(buf);
+            string delimiter = ";";
+            size_t pos = 0;
+            string token;
+            cout << msg.substr(0, msg.find(delimiter)) << endl;
+            int command = stoi(msg.substr(0, msg.find(delimiter)));
+            msg.erase(0, msg.find(delimiter) + delimiter.length());
+            string msg_id = msg.substr(0, msg.find(delimiter));
+            msg.erase(0, msg.find(delimiter) + delimiter.length());
+            if (command == 1) {         //read
+                string user_id = msg;
+                // RESPOND WITH MESSAGE
+            }
+            if (command == 0) {         //write
+                string encrypted_msg = msg.substr(0, msg.find(delimiter));
+                msg.erase(0, msg.find(delimiter) + delimiter.length());
+                string readers=msg;
+                database_insert(msg_id, encrypted_msg, readers);
+            }
+            
+            //count++;
+            memset(buf, 0, sizeof buf);
 
-}
+        }
         else
             fprintf(stderr, "getnameinfo: %s\n", gai_strerror(s));
 
@@ -98,8 +115,8 @@ main(int argc, char *argv[])
                     (struct sockaddr *) &peer_addr,
                     peer_addr_len) != nread)
             fprintf(stderr, "Error sending response\n");
-	    if ( count > 4 ) break;
+        if ( count > 4 ) break;
     }
-            myfile.close();
-return 0;
+    myfile.close();
+    return 0;
 }

@@ -32,10 +32,14 @@ int database_insert(string idhash, string message,string readers)
 
     /* Create SQL statement */
 
-    //   sql = "CREATE TABLE MESSAGES("  \
+     string  create = "CREATE TABLE IF NOT EXISTS MESSAGES("  \
     "IDHASH         TEXT    NOT NULL," \
         "MESSAGE        TEXT    NOT NULL," \
         "READERS        TEXT    NOT NULL);";
+
+    char *c_sql = new char[create.length() + 1];
+    strcpy(c_sql, create.c_str());
+    rc = sqlite3_exec(db, c_sql, callback, 0, &zErrMsg);
 
     /* Execute SQL statement */
     //   char * sql = message
@@ -43,9 +47,9 @@ int database_insert(string idhash, string message,string readers)
                    "VALUES ('"+idhash+"', '"+message+"', '"+readers+"' ); " ;
     //   sql = "INSERT INTO MESSAGES (IDHASH,MESSAGE,READERS) "  \
     "VALUES ('d93e06289f776316337adbcc851cdf07b362b6a7', 'd93e06289f776316337adbcc851cdf07b362b6a7', 'd93e06289f776316337adbcc851cdf07b362b6a7' ); " ;
-    char *sql = new char[ssql.length() + 1];
-    strcpy(sql, ssql.c_str());
-    rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+    char *i_sql = new char[ssql.length() + 1];
+    strcpy(i_sql, ssql.c_str());
+    rc = sqlite3_exec(db, i_sql, callback, 0, &zErrMsg);
     if( rc != SQLITE_OK ){
         cout << "SQL error: " << zErrMsg;
         sqlite3_free(zErrMsg);
