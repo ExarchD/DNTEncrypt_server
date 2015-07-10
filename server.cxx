@@ -21,6 +21,7 @@ main(int argc, char *argv[])
     socklen_t peer_addr_len;
     ssize_t nread;
     char buf[BUF_SIZE];
+    string resp;
     std::ofstream myfile;
     myfile.open ("example.txt");
 
@@ -88,20 +89,22 @@ main(int argc, char *argv[])
             string delimiter = ";";
             size_t pos = 0;
             string token;
-            cout << msg.substr(0, msg.find(delimiter)) << endl;
+            //cout << msg.substr(0, msg.find(delimiter)) << endl;
             int command = stoi(msg.substr(0, msg.find(delimiter)));
             msg.erase(0, msg.find(delimiter) + delimiter.length());
             string msg_id = msg.substr(0, msg.find(delimiter));
             msg.erase(0, msg.find(delimiter) + delimiter.length());
             if (command == 1) {         //read
                 string user_id = msg;
-                // RESPOND WITH MESSAGE
+                resp=database_retrieve(msg_id, user_id);
             }
             if (command == 0) {         //write
                 string encrypted_msg = msg.substr(0, msg.find(delimiter));
                 msg.erase(0, msg.find(delimiter) + delimiter.length());
                 string readers=msg;
                 database_insert(msg_id, encrypted_msg, readers);
+                resp="SUCCESS";
+
             }
             
             //count++;
@@ -111,9 +114,9 @@ main(int argc, char *argv[])
         else
             fprintf(stderr, "getnameinfo: %s\n", gai_strerror(s));
 
-        if (sendto(sfd, buf, nread, 0,
+        if (sendto(sfd, resp.data(), resp.size(), 0,
                     (struct sockaddr *) &peer_addr,
-                    peer_addr_len) != nread)
+                    peer_addr_len) != resp.size())
             fprintf(stderr, "Error sending response\n");
         if ( count > 4 ) break;
     }
