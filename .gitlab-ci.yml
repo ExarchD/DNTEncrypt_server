@@ -1,13 +1,5 @@
 types:
-    - analyze
     - build
-    # - test
-
-analyze-server:
-    type: analyze
-    allow_failure: true
-    script:
-    - make clean
 
 build-server-debug:
     type: build
