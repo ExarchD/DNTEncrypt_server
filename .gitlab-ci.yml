@@ -1,0 +1,29 @@
+types:
+    - analyze
+    - build
+    # - test
+
+analyze-server:
+    type: analyze
+    allow_failure: true
+    script:
+    - make clean
+tags:
+    - openSUSE13.2
+
+build-server-debug:
+    type: build
+    script:
+    - make
+tags:
+    - openSUSE13.2
+
+# build-server-release:
+#     type: build
+#     allow_failure: true
+#     script:
+#         - cd Release
+#     - make clean
+# tags:
+#     - SLES11SP3
+
