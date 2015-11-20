@@ -8,15 +8,11 @@ analyze-server:
     allow_failure: true
     script:
     - make clean
-tags:
-    - openSUSE13.2
 
 build-server-debug:
     type: build
     script:
     - make
-tags:
-    - openSUSE13.2
 
 # build-server-release:
 #     type: build
