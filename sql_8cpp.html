@@ -98,8 +98,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a7bf40d31a52cf440db7592cda23aea03"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sql_8cpp.html#a7bf40d31a52cf440db7592cda23aea03">database_insert</a> (string idhash, string message, string readers)</td></tr>
+<tr class="memdesc:a7bf40d31a52cf440db7592cda23aea03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Records a new message into the database.  <a href="#a7bf40d31a52cf440db7592cda23aea03">More...</a><br /></td></tr>
 <tr class="separator:a7bf40d31a52cf440db7592cda23aea03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adaa6734c351c73972c4127c94173e6de"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sql_8cpp.html#adaa6734c351c73972c4127c94173e6de">database_retrieve</a> (string idhash, string readers)</td></tr>
+<tr class="memdesc:adaa6734c351c73972c4127c94173e6de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retieves a message based on an IDHASH and removes the READERS hash from the message entry. When all READERS are gone from the entry the entry is deleted.  <a href="#adaa6734c351c73972c4127c94173e6de">More...</a><br /></td></tr>
 <tr class="separator:adaa6734c351c73972c4127c94173e6de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -118,19 +120,19 @@ Variables</h2></td></tr>
           <td class="memname">int database_insert </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>idhash</em>, </td>
+          <td class="paramname"><em>IDHASH</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>message</em>, </td>
+          <td class="paramname"><em>MESSAGE</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>readers</em>&#160;</td>
+          <td class="paramname"><em>READERS</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -139,6 +141,17 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Records a new message into the database. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">IDHASH</td><td>The identifying hash, this is unique per message and each client is able to independently generate the hash to look for a particular message </td></tr>
+    <tr><td class="paramname">MESSAGE</td><td>The GnuPG encrypted message </td></tr>
+    <tr><td class="paramname">READERS</td><td>The identifying hashes of all intended recipients Once all recipients have collected the message, the message is deleted from the database</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns whether or not the recording was successful. Failures should be common in fact, this indicates that the message hash already exists, and that the client should increment the counter </dd></dl>
 
 </div>
 </div>
@@ -150,13 +163,13 @@ Variables</h2></td></tr>
           <td class="memname">string database_retrieve </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>idhash</em>, </td>
+          <td class="paramname"><em>IDHASH</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>readers</em>&#160;</td>
+          <td class="paramname"><em>READERS</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -165,6 +178,16 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Retieves a message based on an IDHASH and removes the READERS hash from the message entry. When all READERS are gone from the entry the entry is deleted. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">IDHASH</td><td>The identifying hash </td></tr>
+    <tr><td class="paramname">READERS</td><td>The requesting reader's hash</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The GnuPG encrypted message </dd></dl>
 
 </div>
 </div>
