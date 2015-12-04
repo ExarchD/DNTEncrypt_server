@@ -10,7 +10,7 @@ using namespace std;
  * \section intro_sec Introduction
  * The DNTEncrypt server is designed to be extremely simple. It does no processing, 
  * just reading and writing. The server has no need to know anything about the messages,
- * the recipients or senders. Read about the main() function to get started.
+ * the recipients or senders. Read about the main(int, char**) function to get started.
  * 
  */
 
@@ -43,14 +43,19 @@ int database_insert(string IDHASH, string MESSAGE, string READERS);
 string database_retrieve(string IDHASH, string READERS);
 
 /** 
- * @brief This is the main function. It listens on a particular port 
- * for a message from a client. The client message consists of a command: Read or Write, 
- * the message IDHASH, the encrypted message, and the READERS hashes. A Read message does not
- * carry an encrypted message however, and only has the client's READERS hash. 
+ * @brief This is the main function. It listens on a particular port for a message from a client. The client message consists of a command: Read or Write, the message IDHASH, the encrypted message, and the READERS hashes. A Read message does not carry an encrypted message however, and only has the client's READERS hash. 
+ * 
  *
  * The read function is database_retrieve(string IDHASH, string READERS).
- * The write function is database_insert(string IDHASH, string MESSAGE, string READERS).
+ *
+ *
+ * The write function is database_insert(string IDHASH, string MESSAGE, string READERS). 
+ *
+ * @param int This is the cli port input
+ * @param 
+ * 
+ * @return 
  */
-void main();
+int main(int, char**);
 
 #endif
