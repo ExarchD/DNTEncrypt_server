@@ -7,13 +7,14 @@
 #include <netdb.h>
 #include <iostream>
 #include <fstream>
-#include <objects.h>
+#include <sql.h>
 
 #define BUF_SIZE 5000
 using namespace std;
 	int
 main(int argc, char *argv[])
 {
+	SQL database;
 	struct addrinfo hints;
 	struct addrinfo *result, *rp;
 	int sfd, s;
@@ -103,13 +104,13 @@ main(int argc, char *argv[])
 			msg.erase(0, msg.find(delimiter) + delimiter.length());
 			if (command == 1) {         //read
 				string user_id = msg;
-				resp=database_retrieve(msg_id, user_id);
+				resp=database.database_retrieve(msg_id, user_id);
 			}
 			if (command == 0) {         //write
 				string encrypted_msg = msg.substr(0, msg.find(delimiter));
 				msg.erase(0, msg.find(delimiter) + delimiter.length());
 				string readers=msg;
-				database_insert(msg_id, encrypted_msg, readers);
+				database.database_insert(msg_id, encrypted_msg, readers);
 				resp="SUCCESS";
 
 			}
