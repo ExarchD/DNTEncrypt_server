@@ -102,9 +102,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a608e80613593926c858f93c47bb080e8"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="objects_8h.html#a608e80613593926c858f93c47bb080e8">database_retrieve</a> (string IDHASH, string READERS)</td></tr>
 <tr class="memdesc:a608e80613593926c858f93c47bb080e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retieves a message based on an IDHASH and removes the READERS hash from the message entry. When all READERS are gone from the entry the entry is deleted.  <a href="#a608e80613593926c858f93c47bb080e8">More...</a><br /></td></tr>
 <tr class="separator:a608e80613593926c858f93c47bb080e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acdef7a1fd863a6d3770c1268cb06add3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="objects_8h.html#acdef7a1fd863a6d3770c1268cb06add3">main</a> ()</td></tr>
-<tr class="memdesc:acdef7a1fd863a6d3770c1268cb06add3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the main function. It listens on a particular port for a message from a client. The client message consists of a command: Read or Write, the message IDHASH, the encrypted message, and the READERS hashes. A Read message does not carry an encrypted message however, and only has the client's READERS hash.  <a href="#acdef7a1fd863a6d3770c1268cb06add3">More...</a><br /></td></tr>
-<tr class="separator:acdef7a1fd863a6d3770c1268cb06add3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c3f6775325c30275d11c6abee2db6a0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="objects_8h.html#a2c3f6775325c30275d11c6abee2db6a0">main</a> (int, char **)</td></tr>
+<tr class="memdesc:a2c3f6775325c30275d11c6abee2db6a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the main function. It listens on a particular port for a message from a client. The client message consists of a command: Read or Write, the message IDHASH, the encrypted message, and the READERS hashes. A Read message does not carry an encrypted message however, and only has the client's READERS hash.  <a href="#a2c3f6775325c30275d11c6abee2db6a0">More...</a><br /></td></tr>
+<tr class="separator:a2c3f6775325c30275d11c6abee2db6a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a81192f2cef372633c72995eca7407967"></a>
@@ -186,21 +186,40 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="acdef7a1fd863a6d3770c1268cb06add3"></a>
+<a class="anchor" id="a2c3f6775325c30275d11c6abee2db6a0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void main </td>
+          <td class="memname">int main </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>This is the main function. It listens on a particular port for a message from a client. The client message consists of a command: Read or Write, the message IDHASH, the encrypted message, and the READERS hashes. A Read message does not carry an encrypted message however, and only has the client's READERS hash. </p>
-<p>The read function is <a class="el" href="objects_8h.html#a608e80613593926c858f93c47bb080e8" title="Retieves a message based on an IDHASH and removes the READERS hash from the message entry...">database_retrieve(string IDHASH, string READERS)</a>. The write function is <a class="el" href="objects_8h.html#a81192f2cef372633c72995eca7407967" title="Records a new message into the database. ">database_insert(string IDHASH, string MESSAGE, string READERS)</a>. </p>
+<p>The read function is <a class="el" href="objects_8h.html#a608e80613593926c858f93c47bb080e8" title="Retieves a message based on an IDHASH and removes the READERS hash from the message entry...">database_retrieve(string IDHASH, string READERS)</a>.</p>
+<p>The write function is <a class="el" href="objects_8h.html#a81192f2cef372633c72995eca7407967" title="Records a new message into the database. ">database_insert(string IDHASH, string MESSAGE, string READERS)</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">int</td><td>This is the cli port input </td></tr>
+    <tr><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
