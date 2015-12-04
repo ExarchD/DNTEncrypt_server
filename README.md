@@ -12,9 +12,3 @@ make
 
 http://exarchd.github.io/DNTEncrypt_server
 
-
-#TODO
-
-Set configure directory appropriately in UNIX and in WINDOWS
-
-Conversation logging using sql databases.
