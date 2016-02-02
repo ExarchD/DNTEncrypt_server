@@ -1,5 +1,5 @@
 include_directories(../include)
-set(HEADER_FILES ../include/objects.h)
+set(HEADER_FILES ../include/sql.h)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
 
