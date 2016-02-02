@@ -14,6 +14,7 @@ endif()
 
 add_library(sql sql.cpp)
 
+message(SEND_ERROR ${CMAKE_CXX_FLAGS})
 
 add_executable(encrypt2_server  server.cxx ${HEADER_FILES} ${CMAKE_CXX_FLAGS})
 target_compile_features(encrypt2_server PRIVATE cxx_range_for)
