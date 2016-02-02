@@ -1,6 +1,5 @@
 include_directories(../include)
 set(HEADER_FILES ../include/sql.h)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
 
 find_path(SQLITE3_INCLUDE_DIR sqlite3.h)
@@ -16,7 +15,7 @@ add_library(sql sql.cpp)
 
 message(SEND_ERROR ${CMAKE_CXX_FLAGS})
 
-add_executable(encrypt2_server  server.cxx ${HEADER_FILES} ${CMAKE_CXX_FLAGS})
+add_executable(encrypt2_server  server.cxx ${HEADER_FILES})
 target_compile_features(encrypt2_server PRIVATE cxx_range_for)
 target_link_libraries(encrypt2_server sql ${SQLITE3_LIBRARY})
 ###
