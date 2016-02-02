@@ -13,7 +13,7 @@ endif()
 
 add_library(sql sql.cpp)
 
-add_executable(encrypt2_server  server.cxx ${HEADER_FILES})
+add_executable(DNTEncrypt_server  server.cxx ${HEADER_FILES})
 target_compile_features(encrypt2_server PRIVATE cxx_range_for)
 target_link_libraries(encrypt2_server sql ${SQLITE3_LIBRARY})
 ###
