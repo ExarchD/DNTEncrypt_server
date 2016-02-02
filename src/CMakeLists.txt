@@ -14,11 +14,11 @@ endif()
 add_library(sql sql.cpp)
 
 add_executable(DNTEncrypt_server  server.cxx ${HEADER_FILES})
-target_compile_features(encrypt2_server PRIVATE cxx_range_for)
-target_link_libraries(encrypt2_server sql ${SQLITE3_LIBRARY})
+target_compile_features(DNTEncrypt_server PRIVATE cxx_range_for)
+target_link_libraries(DNTEncrypt_server sql ${SQLITE3_LIBRARY})
 ###
 
-install(TARGETS encrypt2_server
+install(TARGETS DNTEncrypt_server
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib/static)
